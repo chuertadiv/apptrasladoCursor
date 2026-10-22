@@ -2,7 +2,7 @@
 
 ## Revisión del archivo recibido
 
-Hoja Respuestas: 7.913 filas de datos, 20 columnas. Código de Censo de Inventario: 7.430 valores distintos, sin vacíos y almacenados como texto. Hay 177 códigos repetidos que representan 483 filas adicionales. Este archivo es un historial; no importar una fila como un bien distinto automáticamente.
+Hoja Respuestas: 7.913 filas de datos, 20 columnas. Código de Censo de Inventario: 7.430 valores distintos, sin vacíos y almacenados como texto. Hay 177 códigos repetidos que representan 483 filas adicionales. Este archivo es una muestra de historial. El usuario confirma que el archivo final no tendrá códigos repetidos. No importar una fila como un bien distinto automáticamente.
 
 ## Mapeo
 
@@ -25,7 +25,7 @@ Todas las columnas originales, incluidas ID respuesta, Usuario, Grupo, Enviado, 
 1. Calcular SHA256 del archivo para impedir reimportación accidental.
 2. Ingresar todas las filas a inventario_historial con hoja y número de fila como procedencia.
 3. Validar el código como texto, sin convertirlo a número ni alterar ceros iniciales. Conservar el valor original en JSON.
-4. Separar los códigos repetidos para conciliación. No elegir la primera fila ni la última sin una regla aprobada. Conservar cada registro histórico.
+4. Regla confirmada por el usuario: ante códigos repetidos, seleccionar únicamente el registro con la fecha Enviado más reciente para el padrón de bienes. Comparar fechas interpretadas, nunca el texto ni el orden de las filas. Los registros anteriores se conservan solo como procedencia en inventario_historial, no como bienes adicionales. Si hay fechas inválidas o un empate entre registros diferentes, marcar el código para revisión sin elegir arbitrariamente. El archivo definitivo se espera sin repetidos; validar igualmente la unicidad.
 5. Poblar bienes desde el registro conciliado y vincular fuente_historial_id.
 6. Guardar referencias de fotografías sin descargarlas ni hacerlas públicas. Las referencias del Excel apuntan a otro proyecto Supabase; no asumir que existen en el proyecto de traslado.
 
